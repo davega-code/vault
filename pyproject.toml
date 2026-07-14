@@ -1,0 +1,31 @@
+[project]
+name = "vault"
+version = "0.1.0"
+description = "Back up a local folder of photos/files to cloud storage (Azure Blob Storage)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "typer>=0.12",
+    "azure-storage-blob>=12.19",
+    "azure-identity>=1.15",
+]
+
+[project.scripts]
+vault = "cli:app"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["src"]
+sources = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
